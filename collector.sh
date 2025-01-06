@@ -25,8 +25,8 @@ ping_host() {
     fi
 }
 
-# دریافت کانفیگ‌ها از API و پردازش آنها
-response=$(curl -s "$url")
+# دریافت کانفیگ‌ها از API با متد GET
+response=$(curl -s -X GET "$url")
 
 # بررسی موفقیت درخواست
 if [ $? -ne 0 ]; then
