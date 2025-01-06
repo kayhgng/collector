@@ -25,14 +25,18 @@ ping_host() {
     fi
 }
 
-# دریافت کانفیگ‌ها از API با متد GET
-response=$(curl -s -X GET "$url")
+# ارسال درخواست GET به API و بررسی نتیجه
+response=$(curl -s "$url")
 
-# بررسی موفقیت درخواست
+# چک کردن وضعیت درخواست
 if [ $? -ne 0 ]; then
     echo "Error fetching data from API"
     exit 1
 fi
+
+# نمایش محتوای پاسخ برای بررسی
+echo "API response:"
+echo "$response" | jq .
 
 # ایجاد آرایه برای ذخیره اطلاعات کانفیگ‌ها و زمان پینگ
 configs=()
